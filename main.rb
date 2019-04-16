@@ -1,3 +1,5 @@
+require './player.rb'
+
 class Game
 
     def initialize
@@ -12,6 +14,7 @@ class Game
 
     def new_game
         puts 'Welcome to a silly math game...'
+        puts '+ = - % / + = - / %'
         puts "#{@current_player.name}, you're up first!"
         puts '================='
         self.new_question
@@ -36,6 +39,7 @@ class Game
             puts 'Wrong'
             puts "============"
             @current_player.lose_life
+            puts "#{@current_player.name}, you've lost a life! Only #{@current_player.lives} left!"
             self.switch_turn
             sleep(1)
             puts "#{@current_player.name}, your turn"
@@ -56,19 +60,6 @@ class Game
         @current_player = @current_player == @player1 ? @player2 : @player1
     end
 
-end
-
-class Player
-    attr_accessor :name, :lives
-
-    def initialize
-        @lives = 3
-        @name = gets.chomp
-    end
-
-    def lose_life
-        @lives -= 1
-    end
 end
 
 
